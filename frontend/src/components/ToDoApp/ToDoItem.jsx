@@ -1,6 +1,9 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
-import { IoCheckmarkCircleOutline, IoIosCheckmarkCircle } from "react-icons/io";
+import {
+  IoIosCheckmarkCircle,
+  IoMdCheckmarkCircleOutline,
+} from "react-icons/io";
 
 const ToDoItem = ({ text, id, isComplete, onDelete, onToggleComplete }) => {
   const handleToggle = () => {
@@ -27,7 +30,7 @@ const ToDoItem = ({ text, id, isComplete, onDelete, onToggleComplete }) => {
               className="text-blue-600 hover:text-blue-400 transition-colors duration-200"
             />
           ) : (
-            <IoCheckmarkCircleOutline
+            <IoMdCheckmarkCircleOutline
               size={25}
               className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
             />
