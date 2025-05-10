@@ -73,14 +73,13 @@ export default function ToDoApp() {
   }
 
   return (
-    <div className="w-full md:w-4/5 lg:w-2/3 xl:w-1/3 flex flex-col bg-white rounded-lg mx-auto p-4 sm:p-6 max-w-md min-h-[400px] sm:min-h-[550px] shadow-lg">
-      {/* En-tête */}
+    <div className="w-full md:w-4/5 lg:w-2/3 xl:w-1/3 flex flex-col bg-white rounded-lg mx-auto p-4 sm:p-6 max-w-md min-h-[400px] sm:min-h-[550px] shadow-lg relative">
+      {/* En-tête et formulaire (inchangés) */}
       <div className="flex flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 items-center">
         <FaClipboardList className="text-2xl sm:text-3xl" />
         <h1 className="text-2xl sm:text-3xl font-bold">To-Do List</h1>
       </div>
 
-      {/* Formulaire d'ajout */}
       <div className="flex flex-col sm:flex-row justify-between rounded-full w-full items-center bg-amber-100 p-1 sm:p-2 gap-2">
         <input
           ref={inputRef}
@@ -97,11 +96,7 @@ export default function ToDoApp() {
         </button>
       </div>
 
-      {/* Liste des tâches */}
-      <div
-        className="mt-4 overflow-y-auto"
-        style={{ maxHeight: "calc(100vh - 300px)" }}
-      >
+      <div className="mt-4 overflow-y-auto mb-4" style={{ maxHeight: "300px" }}>
         {todoList.length === 0 ? (
           <p className="text-gray-500 text-center mt-6">No tasks added yet.</p>
         ) : (
@@ -118,9 +113,9 @@ export default function ToDoApp() {
         )}
       </div>
 
-      {/* Statistiques */}
-      {todoList.length > 0 && (
-        <div className="mt-4 px-5 text-xs sm:text-sm text-gray-500 text-center sm:text-left b-0 mb-0 pb-0 field-sizing-fixed">
+      {/* Compteur fixé en bas */}
+      {!!todoList.length && (
+        <div className="pt-5 sticky bottom-0 bg-white pt-2 pb-1 px-5 text-xs sm:text-sm text-gray-500 border-t border-gray-100">
           {todoList.filter((t) => t.is_complete).length} / {todoList.length}{" "}
           tâches complétées
         </div>
