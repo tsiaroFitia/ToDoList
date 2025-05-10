@@ -1,9 +1,9 @@
-import TodoList from "./components/TodoList";
+import TodoApp from "./components/ToDoApp/ToDoApp";
 
 function App() {
   return (
-    <div className="bg-black">
-      <TodoList />
+    <div className="mt-30">
+      <TodoApp />
     </div>
   );
 }
