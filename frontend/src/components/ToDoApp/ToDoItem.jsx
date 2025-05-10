@@ -1,39 +1,55 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaTrash } from "react-icons/fa";
-import { IoCheckmarkCircleOutline } from "react-icons/io5";
-import { IoIosCheckmarkCircle } from "react-icons/io";
+import { IoCheckmarkCircleOutline, IoIosCheckmarkCircle } from "react-icons/io";
 
-const ToDoItem = ({ text, id, isComplete, onDelete }) => {
-  const [check, setCheck] = useState(isComplete);
+const ToDoItem = ({ text, id, isComplete, onDelete, onToggleComplete }) => {
+  const handleToggle = () => {
+    onToggleComplete(id, !isComplete);
+  };
 
-  const toggleCheck = () => setCheck((prev) => !prev);
+  const handleDelete = () => {
+    onDelete(id);
+  };
 
   return (
-    <div className="flex items-center justify-between my-3 gap-3 hover:bg-gray-100 rounded-lg p-4">
-      <div className="flex flex-row gap-3">
-        <button onClick={toggleCheck}>
-          {check ? (
+    <div className="flex items-center justify-between my-3 gap-3 hover:bg-gray-100 rounded-lg p-4 transition-colors duration-200">
+      <div className="flex items-center gap-3 flex-1 min-w-0">
+        <button
+          onClick={handleToggle}
+          aria-label={
+            isComplete ? "Marquer comme incomplet" : "Marquer comme complet"
+          }
+          className="flex-shrink-0"
+        >
+          {isComplete ? (
             <IoIosCheckmarkCircle
               size={25}
-              className="text-blue-600 hover:text-blue-400"
+              className="text-blue-600 hover:text-blue-400 transition-colors duration-200"
             />
           ) : (
             <IoCheckmarkCircleOutline
               size={25}
-              className="text-gray-600 hover:text-gray-800"
+              className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
             />
           )}
         </button>
         <span
-          className={`${
-            check ? "text-gray-500 line-through" : "text-gray-800"
+          className={`truncate ${
+            isComplete ? "text-gray-400 line-through" : "text-gray-800"
           }`}
         >
           {text}
         </span>
       </div>
-      <button onClick={() => onDelete(id)}>
-        <FaTrash size={20} className="text-gray-500 hover:text-red-600" />
+      <button
+        onClick={handleDelete}
+        aria-label="Supprimer la tâche"
+        className="flex-shrink-0 ml-2"
+      >
+        <FaTrash
+          size={18}
+          className="text-gray-400 hover:text-red-500 transition-colors duration-200"
+        />
       </button>
     </div>
   );

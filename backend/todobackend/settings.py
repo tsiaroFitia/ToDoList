@@ -55,9 +55,17 @@ MIDDLEWARE = [
 
 ]
 
+# Config CORS
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
+    "http://localhost:5173",  # Adresse de votre frontend React/Vite
 ]
+
+# REST Framework config
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
 
 ROOT_URLCONF = 'todobackend.urls'
 
